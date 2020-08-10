@@ -1,0 +1,36 @@
+$highlight: #EBF213;
+$headline: #A60D0D;
+$discrete: #200559;
+
+
+*{
+  margin: 0;
+  padding: 0;
+  border: none;
+  list-style-type: none;
+}
+
+body{
+  background-color: #282c34;
+  padding: 1em;
+}
+
+.app {
+  text-align: center;
+
+  header{
+
+    h1{
+      color: $headline;
+      font-size: 3em;
+    }
+
+    form{
+
+      input{
+        background-color: red;
+        border-radius: 5px;
+      }
+    }
+  }
+}
