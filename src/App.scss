@@ -1,3 +1,6 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 $highlight: #EBF213;
 $headline: #A60D0D;
 $discrete: #200559;
@@ -12,24 +15,70 @@ $discrete: #200559;
 
 body{
   background-color: #282c34;
-  padding: 1em;
 }
 
 .app {
   text-align: center;
 
   header{
+    background-color: white;
+    padding: 1em;
+    box-shadow: 0px 8px 10px 5px black;
 
     h1{
       color: $headline;
       font-size: 3em;
+      text-transform: uppercase;
     }
 
+    h4{
+      letter-spacing: .25em;
+    }
+
+  }
+
+  main{
+
     form{
+      margin: 1em auto;
 
       input{
-        background-color: red;
-        border-radius: 5px;
+        padding: .5em;
+        border-radius: 5px 0 0 5px;
+      }
+
+      button{
+        padding: .5em;
+        border-radius: 0 5px 5px 0;
+      }
+    }
+
+    .cards{
+      width: 90vw;
+      margin: 0 auto;
+      .card{
+        display: flex;
+        align-items: center;
+        padding: .5em;
+        margin: 1em 0;
+        background-color: white;
+
+        .article{
+          text-align: left;
+
+          h1{
+            color: $headline;
+            font-size: 1em;
+          }
+        }
+
+        .pic{
+
+          img{
+            width: 100px;
+            padding-left: .25em;
+          }
+        }
       }
     }
   }

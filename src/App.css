@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -7,20 +9,71 @@
 
 body {
   background-color: #282c34;
-  padding: 1em;
 }
 
 .app {
   text-align: center;
 }
 
+.app header {
+  background-color: white;
+  padding: 1em;
+  -webkit-box-shadow: 0px 8px 10px 5px black;
+          box-shadow: 0px 8px 10px 5px black;
+}
+
 .app header h1 {
   color: #A60D0D;
   font-size: 3em;
+  text-transform: uppercase;
 }
 
-.app header form input {
-  background-color: red;
-  border-radius: 5px;
+.app header h4 {
+  letter-spacing: .25em;
+}
+
+.app main form {
+  margin: 1em auto;
+}
+
+.app main form input {
+  padding: .5em;
+  border-radius: 5px 0 0 5px;
+}
+
+.app main form button {
+  padding: .5em;
+  border-radius: 0 5px 5px 0;
+}
+
+.app main .cards {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.app main .cards .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .5em;
+  margin: 1em 0;
+  background-color: white;
+}
+
+.app main .cards .card .article {
+  text-align: left;
+}
+
+.app main .cards .card .article h1 {
+  color: #A60D0D;
+  font-size: 1em;
+}
+
+.app main .cards .card .pic img {
+  width: 100px;
+  padding-left: .25em;
 }
 /*# sourceMappingURL=App.css.map */
