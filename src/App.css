@@ -47,8 +47,8 @@ body {
 }
 
 .app main .cards {
-  width: 90vw;
-  margin: 0 auto;
+  width: 90%;
+  margin: 2em auto;
 }
 
 .app main .cards .card {
@@ -73,7 +73,11 @@ body {
 }
 
 .app main .cards .card .pic img {
-  width: 100px;
+  width: 90%;
   padding-left: .25em;
+}
+
+#noanim-tab-example {
+  color: red !important;
 }
 /*# sourceMappingURL=App.css.map */

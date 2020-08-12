@@ -1,33 +1,46 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-// import Tabs from 'react-bootstrap/Tabs'
-// import Tab from 'react-bootstrap/Tab'
-import Cards from './Card'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+import World from './World'
+import Politics from './Politics'
+import Weather from './Weather'
+import Sports from './Sports'
 import { Component } from 'react';
+
+var token = '74e0c52345ef8a9dc62f6cc169df48d4'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       articles: [
-
-        {
-          description: "Oil settled higher on Monday, supported by data suggesting Chinese factories were returning to pre-pandemic levels, signs of rising energy demand and hopes for an agreement in the United States on ...",
-          image: "https://images.gnews.io/c0b3b01d298aac98badb7b84f528a972",
-          publishedAt: "2020-08-10 17:22:00 UTC",
-          title: "Oil settles higher on Chinese factory data, U.S. stimulus hopes",
-          url: "https://finance.yahoo.com/news/oil-prices-back-rise-u-003254628.html",
-        },
-        {
-          description: "Oil settled higher on Monday, supported by data suggesting Chinese factories were returning to pre-pandemic levels, signs of rising energy demand and hopes for an agreement in the United States on ...",
-          image: "https://images.gnews.io/c0b3b01d298aac98badb7b84f528a972",
-          publishedAt: "2020-08-10 17:22:00 UTC",
-          title: "Oil settles higher on Chinese factory data, U.S. stimulus hopes",
-          url: "https://finance.yahoo.com/news/oil-prices-back-rise-u-003254628.html",
-        },
-
+        { id: 1, title: "The latest on the coronavirus pandemic: Live updates", description: "The latest on the coronavirus pandemic: Live updates" },
+        { id: 2, title: "Putin claims Russia has registered the world's fir…ronavirus vaccine, says his daughter has taken it" },
+        { id: 3, title: "Apple Daily prints half a million copies in defiance of founder Jimmy Lai's arrest in Hong" }
       ]
     }
+  }
+
+  // addAticles = (data) => {
+  //   var newArticles = {
+  //     id: Date.now(),
+  //     ...data
+  //   }
+
+  //   var newList = [newArticles, ...this.state.articles]
+  //   this.setState({ articles: newList })
+  // }
+
+  loadArticlesByTopic = (topic) => {
+    var url = 'https://gnews.io/api/v3/topics/'+topic+'?token='+token
+    fetch(url)
+      .then( res=>res.json())
+      .then((data)=>{
+        var articles = data.articles
+        console.log(articles)
+      })
   }
 
 
@@ -41,42 +54,78 @@ class App extends Component {
         </header>
 
         <main>
-        <form action="/action_page.php">
+          <form action="/action_page.php">
             <input type="text" placeholder="Search.." name="search" />
             <button type="submit"><i className="fa fa-search"></i></button>
           </form>
-          <div className="cards">
-            {
-              this.state.articles.map((things) => {
-                var articlesprops = {
-                  key: things.id,
-                  ...things
+
+
+          <Tabs defaultActiveKey="world" transition={false} id="noanim-tab-example">
+            <Tab eventKey="world" title="World">
+              <div className="cards">
+
+                {
+                  this.state.articles.map((things) => {
+                    var articlesprops = {
+                      key: things.id,
+                      ...things
+                    }
+                    return (
+                      <World {...articlesprops} />
+                    )
+                  })
                 }
-                return(
-                  <Cards {...articlesprops}/>
-                )
-              })
-            }
-          </div>
-
-
-          {/* <Tabs defaultActiveKey="profile">
-            <Tab eventKey="top" title="Top Stories">
-              <div className="card">
-                <img className="card-img-top" src="" alt="Card image cap" />
-                <div className="card-body">
-                  <h5 className="card-title">Hello</h5>
-                  <p className="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem, eligendi?</p>
-                  <a href="#" className="btn btn-primary">Go somewhere</a>
-                </div>
               </div>
             </Tab>
             <Tab eventKey="politics" title="Politics">
-            </Tab>
-            <Tab eventKey="contact" title="Contact" disabled>
-            </Tab>
-          </Tabs> */}
+              <div className="cards">
 
+                {
+                  this.state.articles.map((things) => {
+                    var articlesprops = {
+                      key: things.id,
+                      ...things
+                    }
+                    return (
+                      <Politics {...articlesprops} />
+                    )
+                  })
+                }
+              </div>
+            </Tab>
+            <Tab eventKey="weather" title="Weather">
+              <div className="cards">
+
+                {
+                  this.state.articles.map((things) => {
+                    var articlesprops = {
+                      key: things.id,
+                      ...things
+                    }
+                    return (
+                      <Weather {...articlesprops} />
+                    )
+                  })
+                }
+              </div>
+            </Tab>
+            <Tab eventKey="sports" title="Sports">
+              <div className="cards">
+
+                {
+                  this.state.articles.map((things) => {
+                    var articlesprops = {
+                      key: things.id,
+                      ...things
+                    }
+                    return (
+                      <Sports {...articlesprops} />
+                    )
+                  })
+                }
+              </div>
+            </Tab>
+          </Tabs>
         </main>
       </div >
     );

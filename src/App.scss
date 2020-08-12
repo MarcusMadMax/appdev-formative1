@@ -1,5 +1,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+// @import "~bootstrap/scss/bootstrap";
 
 $highlight: #EBF213;
 $headline: #A60D0D;
@@ -54,8 +55,12 @@ body{
     }
 
     .cards{
-      width: 90vw;
-      margin: 0 auto;
+      width: 90%;
+      margin: 2em auto;
+      // box-shadow: inset 0px 0px 15px black;
+      // padding: 1em;
+      // box-sizing: border-box;
+
       .card{
         display: flex;
         align-items: center;
@@ -75,11 +80,15 @@ body{
         .pic{
 
           img{
-            width: 100px;
+            width: 90%;
             padding-left: .25em;
           }
         }
       }
     }
   }
+}
+
+#noanim-tab-example{
+  color: red !important;
 }

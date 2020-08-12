@@ -1,11 +1,8 @@
 import React from 'react'
 import { Component } from 'react'
-import { render } from '@testing-library/react'
 
-class Cards extends Component {
-    constructor(props){
-        super(props)
-    }
+class Weather extends Component {
+
 
 
 
@@ -25,4 +22,4 @@ class Cards extends Component {
     }
 }
 
-export default Cards
+export default Weather
