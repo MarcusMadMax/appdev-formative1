@@ -3,10 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
-import World from './World'
-import Politics from './Politics'
-import Weather from './Weather'
-import Sports from './Sports'
+import Articles from './Articles'
 import { Component } from 'react';
 
 var token = '74e0c52345ef8a9dc62f6cc169df48d4'
@@ -15,31 +12,63 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      articles: [
-        { id: 1, title: "The latest on the coronavirus pandemic: Live updates", description: "The latest on the coronavirus pandemic: Live updates" },
-        { id: 2, title: "Putin claims Russia has registered the world's fir…ronavirus vaccine, says his daughter has taken it" },
-        { id: 3, title: "Apple Daily prints half a million copies in defiance of founder Jimmy Lai's arrest in Hong" }
-      ]
+      world: [],
+      nation: [],
+      sports:[],
+      health: [],
     }
   }
 
-  // addAticles = (data) => {
-  //   var newArticles = {
-  //     id: Date.now(),
-  //     ...data
-  //   }
 
-  //   var newList = [newArticles, ...this.state.articles]
-  //   this.setState({ articles: newList })
-  // }
 
-  loadArticlesByTopic = (topic) => {
-    var url = 'https://gnews.io/api/v3/topics/'+topic+'?token='+token
-    fetch(url)
-      .then( res=>res.json())
-      .then((data)=>{
+  componentDidMount() {
+    this.loadArticlesWorld()
+    this.loadArticlesNation()
+    this.loadArticlesSports()
+    this.loadArticlesHealth()
+  }
+
+  loadArticlesWorld = () => {
+    fetch('https://gnews.io/api/v3/topics/world?&token=' + token)
+      .then(res => res.json())
+      .then((data) => {
         var articles = data.articles
-        console.log(articles)
+        this.setState({
+          world: articles
+        })
+      })
+  }
+
+  loadArticlesNation = () => {
+    fetch('https://gnews.io/api/v3/topics/nation?&token=' + token)
+      .then(res => res.json())
+      .then((data) => {
+        var articles = data.articles
+        this.setState({
+          nation: articles
+        })
+      })
+  }
+
+  loadArticlesSports = () => {
+    fetch('https://gnews.io/api/v3/topics/sports?&token=' + token)
+      .then(res => res.json())
+      .then((data) => {
+        var articles = data.articles
+        this.setState({
+          sports: articles
+        })
+      })
+  }
+
+  loadArticlesHealth = () => {
+    fetch('https://gnews.io/api/v3/topics/health?&token=' + token)
+      .then(res => res.json())
+      .then((data) => {
+        var articles = data.articles
+        this.setState({
+          health: articles
+        })
       })
   }
 
@@ -60,70 +89,66 @@ class App extends Component {
           </form>
 
 
-          <Tabs defaultActiveKey="world" transition={false} id="noanim-tab-example">
+          <Tabs defaultActiveKey="world" transition={false} id="controlled-tab-example">
             <Tab eventKey="world" title="World">
               <div className="cards">
-
                 {
-                  this.state.articles.map((things) => {
+                  this.state.world.map((articles) => {
                     var articlesprops = {
-                      key: things.id,
-                      ...things
+                      key: articles.id,
+                      ...articles
                     }
                     return (
-                      <World {...articlesprops} />
+                      <Articles {...articlesprops} />
                     )
                   })
                 }
               </div>
             </Tab>
-            <Tab eventKey="politics" title="Politics">
+            <Tab eventKey="nation" title="Nation">
               <div className="cards">
-
-                {
-                  this.state.articles.map((things) => {
+            {
+                  this.state.nation.map((articles) => {
                     var articlesprops = {
-                      key: things.id,
-                      ...things
+                      key: articles.id,
+                      ...articles
                     }
                     return (
-                      <Politics {...articlesprops} />
+                      <Articles {...articlesprops} />
                     )
                   })
                 }
-              </div>
-            </Tab>
-            <Tab eventKey="weather" title="Weather">
-              <div className="cards">
-
-                {
-                  this.state.articles.map((things) => {
-                    var articlesprops = {
-                      key: things.id,
-                      ...things
-                    }
-                    return (
-                      <Weather {...articlesprops} />
-                    )
-                  })
-                }
-              </div>
+                </div>
             </Tab>
             <Tab eventKey="sports" title="Sports">
               <div className="cards">
-
-                {
-                  this.state.articles.map((things) => {
+            {
+                  this.state.sports.map((sports) => {
                     var articlesprops = {
-                      key: things.id,
-                      ...things
+                      key: sports.id,
+                      ...sports
                     }
                     return (
-                      <Sports {...articlesprops} />
+                      <Articles {...articlesprops} />
                     )
                   })
                 }
-              </div>
+                </div>
+            </Tab>
+            <Tab eventKey="health" title="Health">
+              <div className="cards">
+            {
+                  this.state.health.map((health) => {
+                    var articlesprops = {
+                      key: health.id,
+                      ...health
+                    }
+                    return (
+                      <Articles {...articlesprops} />
+                    )
+                  })
+                }
+                </div>
             </Tab>
           </Tabs>
         </main>
